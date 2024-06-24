@@ -32,7 +32,7 @@ from random import shuffle
 
 # Read Data
 def ReadData(fileName):
-    f = open('peopleData.txt', 'r')
+    f = open(fileName, 'r')
     lines = f.read().splitlines()
     f.close()
 
@@ -67,3 +67,54 @@ def ReadData(fileName):
     shuffle(items)
     
     return items
+
+# Classifying the Data
+# Calculate the distiance between the item to be classified and all the items in the training set
+# Keep the k shortest distances using a list: neighbors. Where each element has the properties
+# distance from the new item and the elements class.
+# Using euclidean pick the class that appears most of the time in neighbors.
+
+def Classify(nItem, k, Items):
+    if(k > len(Items)):
+        # k is larger than list - abort
+        return "k larger than list length";
+
+    # Hold nearest neighbors. Where properties are distance and class
+    neighbors = [];
+
+    for item in Items:
+        # Find Euclidean Distance
+        distance = EuclideanDistance(nItem, item);
+
+        # Update neighbors, either adding the current item in neighbors or not.
+        neighbors = UpdateNeighbors(neighbors, item, distance, k);
+
+    # Count the number of each class in neighbors 
+    count = CalculateNeighborClass(neighbors, k);
+
+    # Find the max in count, aka the class with the most appearances.
+    return FindMax(count);
+
+# Calculate Euclidean Distance: Sum of the squared differences of the elements
+def EuclideanDistance(x, y):
+    S = 0;
+    for key in x.keys():
+        S += math.pow(x[key]-y[key], 2);
+    
+    return math.sqrt(S);
+
+# Update Neighbors
+# Add an item with their distance
+# If neighbors has less members/length than k - add item
+# If the item's distance is less than the the max distance item - replace farther item.
+# Keep the list storted in ascending order. Thus last item will have the max distance.
+# After every replace resort the list. Can speed up with insertion sort (won't have to sort entire list)
+def UpdateNeighnors(neighbors, item, distance, k):
+    if (len(neighbors) > distance):
+        # replace the last item with new item
+        neighbors[-1] = [distance, item["Class"]];
+        neighbors = sorted(neighbors);
+
+    return neighbors;
+
+# Calculate Neighbors Class
