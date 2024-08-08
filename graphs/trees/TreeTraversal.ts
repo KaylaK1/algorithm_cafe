@@ -14,7 +14,7 @@ class TreeTraversal implements Traversal {
      * Visits all left children before the right.
      * @param node contains value and left/right pointers.
      */
-    // preOrderTrav(node: TreeNode | null): void {
+    // preOrderTrav(node: TreeNodeImp | null): void {
     //     if (node != null) {
     //         this.visit(node);
     //         this.preOrderTrav(node.left);
@@ -23,16 +23,19 @@ class TreeTraversal implements Traversal {
     // }
     /**
      * To traverse a tree iteratively we use a stack
-     * @param node 
+     * Since a stack is fifo, push the direction you want to go last. 
      */
     preOrderTrav(node: TreeNodeImp): void {
         
         const stack: Stack<TreeNodeImp> = new Stack();
 
-        stack.push(node);
+        if (node !== undefined) {
+            stack.push(node);
+        }
+        
         
         while (stack.size() !== 0) {
-            const current: TreeNodeImp = node;
+            const current: TreeNodeImp = stack.pop();
 
             this.visit(current);
             if (current.right !== null) {
@@ -44,12 +47,21 @@ class TreeTraversal implements Traversal {
         }
     }
 
-    inOrderTrav(node: TreeNodeImp): void {
+    inOrderTrav(node: TreeNodeImp | null): void {
+        if (node != null) {
+            this.inOrderTrav(node.left);
+            this.visit(node);
+            this.inOrderTrav(node.right);
+        }
         
     }
 
-    postOrderTrav(node: TreeNodeImp): void {
-        
+    postOrderTrav(node: TreeNodeImp | null): void {
+        if (node != null) {
+            this.postOrderTrav(node.left);
+            this.postOrderTrav(node.right);
+            this.visit(node);
+        }
     }
 
     visit(node: TreeNodeImp): void {

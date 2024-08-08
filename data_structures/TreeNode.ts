@@ -1,22 +1,22 @@
-interface TreeNode {
+interface TreeNode<T> {
     value: number;
-    left: TreeNode | null;
-    right: TreeNode | null;
+    left: TreeNode<T> | null;
+    right: TreeNode<T> | null;
 }
-export class TreeNodeImp {
-    value: number;
-    left: TreeNode | null;
-    right: TreeNode | null;
+export class TreeNodeImp<T> {
+    value: T;
+    left: TreeNode<T> | null;
+    right: TreeNode<T> | null;
 
-    constructor(value: number, left: TreeNode | null = null, right: TreeNode | null = null) {
+    constructor(value: T) {
         this.value = value;
-        this.left = left;
-        this.right = right;
+        this.left = null;
+        this.right = null;
     }
 
 }
 
-export const root: TreeNode = new TreeNodeImp(1);
+export const root: TreeNode<number> = new TreeNodeImp(1);
 
 // Tree with values: 1, 2, 5, 3, 4
 root.value = 1;
