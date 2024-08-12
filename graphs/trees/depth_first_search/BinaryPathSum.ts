@@ -12,9 +12,9 @@
  * then return true
  */
 
-import { TreeNodeImp } from "../../../data_structures/TreeNode";
+import { TreeNode } from "../../../data_structures/TreeNode";
 
-const has_path = function(root: TreeNodeImp<number> | null, sum: number): boolean {
+const has_path = function(root: TreeNode<number> | null, sum: number): boolean {
     if (root == null) {
         return false;
     }
@@ -32,12 +32,12 @@ const has_path = function(root: TreeNodeImp<number> | null, sum: number): boolea
 
 
 
-const root = new TreeNodeImp(12);
-root.left = new TreeNodeImp(7);
-root.right = new TreeNodeImp(1);
-root.left.left = new TreeNodeImp(9);
-root.right.left = new TreeNodeImp(10);
-root.right.right = new TreeNodeImp(5);
+const root = new TreeNode(12);
+root.left = new TreeNode(7);
+root.right = new TreeNode(1);
+root.left.left = new TreeNode(9);
+root.right.left = new TreeNode(10);
+root.right.right = new TreeNode(5);
 
 console.log(`Tree has path: ${has_path(root, 23)}`);
 console.log(`Tree has path: ${has_path(root, 16)}`);
