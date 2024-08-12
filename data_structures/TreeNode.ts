@@ -16,17 +16,18 @@ export class TreeNode<T> {
 
 }
 
-export const root: TreeNode<number> = new TreeNode(1);
+export const root: TreeNode<number> = new TreeNode(12);
 
-//     1
+//     12
 //    / \
-//   2   3
-//  / \
-// 4   5
-root.value = 1;
-root.right = new TreeNode(5);
-root.left = new TreeNode(2);
-root.left.left = new TreeNode(3);
-root.left.right = new TreeNode(4);
+//   7   1
+//  /   / \
+// 4   10  5
+
+root.right = new TreeNode(1);
+root.left = new TreeNode(7);
+root.left.left = new TreeNode(4);
+root.right.left = new TreeNode(10);
+root.right.right = new TreeNode(5);
 
 
