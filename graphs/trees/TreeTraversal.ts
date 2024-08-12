@@ -1,10 +1,10 @@
-import { TreeNodeImp } from "../../data_structures/TreeNode";
+import { TreeNode } from "../../data_structures/TreeNode";
 
 interface Traversal {
-    preOrderTrav(node: TreeNodeImp<number>): void;
-    inOrderTrav(node: TreeNodeImp<number>): void;
-    postOrderTrav(node: TreeNodeImp<number>): void;
-    visit(node: TreeNodeImp<number>): void;
+    preOrderTrav(node: TreeNode<number>): void;
+    inOrderTrav(node: TreeNode<number>): void;
+    postOrderTrav(node: TreeNode<number>): void;
+    visit(node: TreeNode<number>): void;
 }
 
 //     1
@@ -19,7 +19,7 @@ class TreeTraversal implements Traversal {
      * Then traverses the left subtree and finally the right.
      * So it visits the current node first before it's subtrees. 
      */
-    preOrderTrav(node: TreeNodeImp<number> | null): void {
+    preOrderTrav(node: TreeNode<number> | null): void {
         if (node != null) {
             this.visit(node);
             this.preOrderTrav(node.left);
@@ -30,15 +30,15 @@ class TreeTraversal implements Traversal {
      * To traverse a tree iteratively we use a stack
      * Since a stack is fifo, push the direction you want to go last. 
      */
-    // preOrderTrav(node: TreeNodeImp<number>): void {
-    //     const stack: TreeNodeImp<number>[] = [];
+    // preOrderTrav(node: TreeNode<number>): void {
+    //     const stack: TreeNode<number>[] = [];
         
     //     if (!node) throw Error("Node is null, undefined, or falsy");
         
     //     stack.push(node);
         
     //     while (stack.length !== 0) {
-    //         const current: TreeNodeImp<number> | undefined = stack.pop();
+    //         const current: TreeNode<number> | undefined = stack.pop();
 
     //         if (current) {
     //             this.visit(current);
@@ -57,7 +57,7 @@ class TreeTraversal implements Traversal {
      * then traverse the right subtree.
      * So it visits the current node between it's subtrees.
      */
-    inOrderTrav(node: TreeNodeImp<number> | null): void {
+    inOrderTrav(node: TreeNode<number> | null): void {
         if (node != null) {
             this.inOrderTrav(node.left);
             this.visit(node);
@@ -72,7 +72,7 @@ class TreeTraversal implements Traversal {
      * Prints out each row from left to right.
      * So it visits the current node after it's subtrees. 
      */
-    postOrderTrav(node: TreeNodeImp<number> | null): void {
+    postOrderTrav(node: TreeNode<number> | null): void {
         if (node != null) {
             this.postOrderTrav(node.left);
             this.postOrderTrav(node.right);
@@ -80,7 +80,7 @@ class TreeTraversal implements Traversal {
         }
     }
 
-    visit(node: TreeNodeImp<number>): void {
+    visit(node: TreeNode<number>): void {
         console.log(node.value);
     }
 }
