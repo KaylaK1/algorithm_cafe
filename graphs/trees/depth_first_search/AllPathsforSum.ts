@@ -4,3 +4,5 @@
  * from root-to-leaf such that the sum of all the node 
  * values of each path equal 'S'
  */
+const Deque = require('collections/deque');
+
