@@ -1,4 +1,4 @@
-import { TreeNode, root } from "../../../data_structures/TreeNode";
+import { TreeNode } from "../../../data_structures/TreeNode";
 
 /**
  * All Paths for a Sum
@@ -8,10 +8,10 @@ import { TreeNode, root } from "../../../data_structures/TreeNode";
  */
 
 
-const find_paths = function(root: TreeNode<number>, sum: number): Array<Array<number>> {
+export const find_paths = function(root: TreeNode<number>, sum: number): number {
     const allPaths: Array<Array<number>> = [];
     find_paths_recursive(root, sum, new Array<number>, allPaths);
-    return allPaths;
+    return allPaths.length;
 }
 
 const find_paths_recursive = function(currentNode: TreeNode<number> | null, sum: number, currentPath: Array<number>, allPaths: Array<Array<number>>): void {
@@ -35,8 +35,10 @@ const find_paths_recursive = function(currentNode: TreeNode<number> | null, sum:
     currentPath.pop();
 }
 
-let sum = 23;
+//let sum = 23;
 
-const result = find_paths(root, sum);
+//const result = find_paths(root, sum);
 
-console.log('Total number of paths: ', result.length);
+//console.log('Total number of paths: ', result.length);
+
+//export find_paths_recursive;

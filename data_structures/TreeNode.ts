@@ -29,5 +29,3 @@ root.left = new TreeNode(7);
 root.left.left = new TreeNode(4);
 root.right.left = new TreeNode(10);
 root.right.right = new TreeNode(5);
-
-
